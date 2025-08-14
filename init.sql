@@ -1,5 +1,4 @@
-
-DROP DATABASE IF EXISTS football_sim;
+DROP DATABASE IF EXISTS Football_matches;
 CREATE DATABASE football_sim CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE football_sim;
 

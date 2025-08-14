@@ -1,3 +1,4 @@
+USE Football_matches;
 -- 10 left joins 
 
 SELECT t.team_name, m.first_name, m.last_name
