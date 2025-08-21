@@ -1,15 +1,2 @@
-# Maven target folder
 /target/
 
-# IntelliJ IDEA
-.idea/
-*.iml
-
-# Eclipse
-.project
-.classpath
-.settings/
-
-# OS files
-.DS_Store
-Thumbs.db
