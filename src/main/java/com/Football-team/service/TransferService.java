@@ -1,6 +1,6 @@
-package com.example.football.service;
+package com.football.service;
 
-import com.example.football.dao.*;
+import com.football.dao.*;
 
 public class TransferService {{
     public void demo() {{

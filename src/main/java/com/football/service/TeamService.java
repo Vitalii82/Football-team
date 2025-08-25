@@ -1,10 +1,10 @@
-package com.football.service;
+package com.example.football.service;
 
-import com.football.dao.*;
+import com.example.football.dao.*;
 
-public class MatchService {{
+public class TeamService {{
     public void demo() {{
-        System.out.println("MatchService works");
+        System.out.println("TeamService works");
     }}
 
     // add methods that use DAOs here
