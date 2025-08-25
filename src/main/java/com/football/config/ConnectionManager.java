@@ -25,10 +25,7 @@ public final class ConnectionManager {
     private ConnectionManager() {}
 
     public static Connection getConnection() {
-        try {
-            return DriverManager.getConnection(URL, USER, PASS);
-        } catch (Exception e) {
-            throw new RuntimeException("Cannot obtain DB connection", e);
-        }
+        try { return DriverManager.getConnection(URL, USER, PASS); }
+        catch (Exception e) { throw new RuntimeException("Cannot obtain DB connection", e); }
     }
 }

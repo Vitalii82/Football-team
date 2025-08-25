@@ -1,25 +1,34 @@
 package com.football.app;
 
 import com.football.model.Team;
-import com.football.service.TeamService;
-import com.football.service.XmlImportService;
-import com.football.service.impl.TeamServiceImpl;
-import com.football.service.impl.XmlImportServiceImpl;
+import com.football.service.*;
+
+import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
-        XmlImportService xml = new XmlImportServiceImpl();
-        int m = xml.importManagers("data/managers.xml");
-        int p = xml.importPositions("data/positions.xml");
-        System.out.println("Imported managers=" + m + ", positions=" + p);
+        try {
+            var probe = new DbProbeService();
+            probe.printCounts();
 
-        TeamService teams = new TeamServiceImpl();
-        Team t = new Team();
-        t.setTeamName("New Horizon FC");
-        t.setFoundedYear(2024);
-        int id = teams.create(t);
-        System.out.println("Created team id: " + id);
+            var mgrs = new ManagerService();
+            int mid = mgrs.create("Carlo","Bianchi","Italy", LocalDate.of(1970,3,14), 20);
+            System.out.println("Inserted manager id="+mid);
 
-        teams.list().forEach(tt -> System.out.println(" - " + tt.getTeamName()));
+            var poss = new PositionService();
+            int pid = poss.create("WB");
+            System.out.println("Inserted position id="+pid);
+
+            var teams = new TeamService();
+            Team t = new Team();
+            t.setTeamName("Academy FC");
+            t.setFoundedYear(2020);
+            int tid = teams.create(t);
+            System.out.println("Inserted team id="+tid);
+
+            teams.list().forEach(x -> System.out.println("Team: " + x.getTeamName()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
