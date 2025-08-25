@@ -1,26 +1,21 @@
-package com.football.dao;
+package com.football.dao.impl;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Types;
+import com.football.config.ConnectionManager;
+import com.football.dao.ManagerDao;
+import com.football.exception.DataAccessException;
+import com.football.model.Manager;
+
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.football.config.ConnectionPool;
-import com.example.football.model.Manager;
+public class ManagerDaoJdbc implements ManagerDao {
 
-public class ManagersDao {
-    private final ConnectionPool pool = ConnectionPool.getInstance();
-
-    public int insert(Manager m) throws SQLException {
-        try (Connection c = pool.borrow();
-             PreparedStatement ps = c.prepareStatement(
-                "INSERT INTO managers(first_name,last_name,nationality,date_of_birth,experience_years) VALUES(?,?,?,?,?)",
-                Statement.RETURN_GENERATED_KEYS)) {
+    @Override
+    public int insert(Manager m) {
+        String sql = "INSERT INTO managers(first_name,last_name,nationality,date_of_birth,experience_years) VALUES(?,?,?,?,?)";
+        try (Connection c = ConnectionManager.getConnection();
+             PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, m.getFirstName());
             ps.setString(2, m.getLastName());
             ps.setString(3, m.getNationality());
@@ -32,15 +27,18 @@ public class ManagersDao {
             try (ResultSet keys = ps.getGeneratedKeys()) {
                 return keys.next() ? keys.getInt(1) : -1;
             }
+        } catch (SQLException e) {
+            throw new DataAccessException("Insert manager failed", e);
         }
     }
 
-    public List<Manager> findAll() throws SQLException {
-        try (Connection c = pool.borrow();
-             PreparedStatement ps = c.prepareStatement(
-                "SELECT manager_id, first_name, last_name, nationality, date_of_birth, experience_years FROM managers");
+    @Override
+    public List<Manager> findAll() {
+        String sql = "SELECT manager_id, first_name, last_name, nationality, date_of_birth, experience_years FROM managers";
+        List<Manager> out = new ArrayList<>();
+        try (Connection c = ConnectionManager.getConnection();
+             PreparedStatement ps = c.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
-            List<Manager> list = new ArrayList<>();
             while (rs.next()) {
                 Manager m = new Manager();
                 m.setManagerId(rs.getInt("manager_id"));
@@ -51,9 +49,11 @@ public class ManagersDao {
                 if (d != null) m.setDateOfBirth(d.toLocalDate());
                 int exp = rs.getInt("experience_years");
                 m.setExperienceYears(rs.wasNull() ? null : exp);
-                list.add(m);
+                out.add(m);
             }
-            return list;
+        } catch (SQLException e) {
+            throw new DataAccessException("Find managers failed", e);
         }
+        return out;
     }
 }

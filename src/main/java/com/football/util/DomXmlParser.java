@@ -1,7 +1,7 @@
-package com.example.football.util;
+package com.football.util;
 
-import com.example.football.model.Manager;
-import com.example.football.model.Position;
+import com.football.model.Manager;
+import com.football.model.Position;
 import org.w3c.dom.*;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.InputStream;
