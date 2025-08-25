@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<managers>
+  <manager>
+    <firstName>Alex</firstName>
+    <lastName>Miller</lastName>
+    <nationality>England</nationality>
+    <dateOfBirth>1975-04-12</dateOfBirth>
+    <experienceYears>15</experienceYears>
+  </manager>
+  <manager>
+    <firstName>Diego</firstName>
+    <lastName>Santos</lastName>
+    <nationality>Brazil</nationality>
+    <dateOfBirth>1972-09-21</dateOfBirth>
+    <experienceYears>18</experienceYears>
+  </manager>
+</managers>

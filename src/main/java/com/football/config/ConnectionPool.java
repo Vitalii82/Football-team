@@ -1,4 +1,4 @@
-package com.example.football.config;
+package com.football.config;
 
 import java.io.InputStream;
 import java.sql.Connection;
@@ -10,9 +10,9 @@ import java.util.concurrent.BlockingQueue;
 public final class ConnectionPool {
     private static ConnectionPool INSTANCE;
     private final BlockingQueue<Connection> pool;
-    private final String url;
-    private final String user;
-    private final String password;
+    private String url;
+    private String user;
+    private String password;
 
     private ConnectionPool() {
         try (InputStream in = Thread.currentThread().getContextClassLoader()

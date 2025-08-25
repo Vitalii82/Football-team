@@ -1,4 +1,4 @@
-package com.example.football.model;
+package com.football.model;
 
 public class Team {
     private int teamId;
@@ -26,7 +26,7 @@ public class Team {
     public String toString() {
         return "Team{" +
                 "teamId=" + teamId +
-                ", teamName='" + teamName + ''' +
+                ", teamName='" + teamName + '\'' +
                 '}';
     }
 }
