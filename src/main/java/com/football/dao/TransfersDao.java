@@ -1,12 +1,5 @@
 package com.football.dao;
-
-import com.football.model.Transfers;
-import java.util.List;
-import java.util.Optional;
-
+import com.football.model.Transfer;
 public interface TransfersDao {
-    int insert(Transfers e);
-    List<Transfers> findAll();
-    Optional<Transfers> findById(Integer id);
-    int delete(Integer id);
+    int insert(Transfer t);
 }

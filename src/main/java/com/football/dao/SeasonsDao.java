@@ -1,12 +1,7 @@
 package com.football.dao;
-
-import com.football.model.Seasons;
-import java.util.List;
+import com.football.model.Season;
 import java.util.Optional;
-
 public interface SeasonsDao {
-    int insert(Seasons e);
-    List<Seasons> findAll();
-    Optional<Seasons> findById(Integer id);
-    int delete(Integer id);
+    int insert(Season s);
+    Optional<Season> findByYears(int startYear, int endYear);
 }

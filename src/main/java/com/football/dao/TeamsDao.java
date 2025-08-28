@@ -1,12 +1,10 @@
 package com.football.dao;
-
-import com.football.model.Teams;
+import com.football.model.Team;
 import java.util.List;
 import java.util.Optional;
-
 public interface TeamsDao {
-    int insert(Teams e);
-    List<Teams> findAll();
-    Optional<Teams> findById(Integer id);
-    int delete(Integer id);
+    int insert(Team t);
+    List<Team> findAll();
+    Optional<Team> findByName(String name);
+    Optional<Team> findById(int id);
 }

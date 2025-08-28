@@ -1,32 +1,37 @@
 package com.football.app;
 
-import com.football.model.Team;
 import com.football.service.*;
-
 import java.time.LocalDate;
+import java.math.BigDecimal;
 
 public class Main {
     public static void main(String[] args) {
         try {
-            var probe = new DbProbeService();
-            probe.printCounts();
+            // 1) Ensure base data
+            TeamService teamSvc = new TeamService();
+            int teamA = teamSvc.ensureTeam("Lions FC", 2010);
+            int teamB = teamSvc.ensureTeam("Eagles FC", 2012);
 
-            var mgrs = new ManagerService();
-            int mid = mgrs.create("Carlo","Bianchi","Italy", LocalDate.of(1970,3,14), 20);
-            System.out.println("Inserted manager id="+mid);
+            PlayerService playerSvc = new PlayerService();
+            int playerId = playerSvc.ensurePlayer("John", "Doe");
 
-            var poss = new PositionService();
-            int pid = poss.create("WB");
-            System.out.println("Inserted position id="+pid);
+            SeasonService seasonSvc = new SeasonService();
+            int currentYear = LocalDate.now().getYear();
+            int seasonId = seasonSvc.ensureSeason(2025, 2026);
 
-            var teams = new TeamService();
-            Team t = new Team();
-            t.setTeamName("Academy FC");
-            t.setFoundedYear(2020);
-            int tid = teams.create(t);
-            System.out.println("Inserted team id="+tid);
+            // 2) Transfer flow: buy player into teamB
+            TransferService transferSvc = new TransferService();
+            transferSvc.buyPlayer(playerId, teamB, new BigDecimal("1000000"));
 
-            teams.list().forEach(x -> System.out.println("Team: " + x.getTeamName()));
+            // 3) Match flow: schedule and play a match
+            MatchService matchSvc = new MatchService();
+            matchSvc.scheduleAndPlay(seasonId, teamA, teamB, LocalDate.now().plusDays(1));
+
+            // 4) Print teams list (proof)
+            System.out.println("Teams in DB:");
+            teamSvc.list().forEach(t -> System.out.println(" - " + t.getTeamName()));
+
+            System.out.println("Done.");
         } catch (Exception e) {
             e.printStackTrace();
         }
