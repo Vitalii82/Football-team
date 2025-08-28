@@ -7,6 +7,12 @@ import java.math.BigDecimal;
 public class Main {
     public static void main(String[] args) {
         try {
+            // JAXB XML import (validated against XSD) as part of the flow
+            com.football.service.XmlJaxbService xml = new com.football.service.XmlJaxbService();
+            int mImported = xml.importManagers("src/main/resources/xml/managers.xml","src/main/resources/xml/managers.xsd");
+            int pImported = xml.importPositions("src/main/resources/xml/positions.xml","src/main/resources/xml/positions.xsd");
+            System.out.println("Imported via JAXB: managers="+mImported+", positions="+pImported);
+
             // 1) Ensure base data
             TeamService teamSvc = new TeamService();
             int teamA = teamSvc.ensureTeam("Lions FC", 2010);

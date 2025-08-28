@@ -1,0 +1,21 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="managers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="manager" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="firstName" type="xs:string"/>
+              <xs:element name="lastName" type="xs:string"/>
+              <xs:element name="nationality" type="xs:string" minOccurs="0"/>
+              <xs:element name="dateOfBirth" type="xs:date" minOccurs="0"/>
+              <xs:element name="experienceYears" type="xs:int" minOccurs="0"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
