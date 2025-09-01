@@ -1,6 +1,8 @@
 package com.football.app;
 
 import com.football.service.*;
+import com.football.service.StadiumJsonService;
+import com.football.service.TrainingSessionJsonService;
 import java.time.LocalDate;
 import java.math.BigDecimal;
 
@@ -37,6 +39,13 @@ public class Main {
             System.out.println("Teams in DB:");
             teamSvc.list().forEach(t -> System.out.println(" - " + t.getTeamName()));
 
+            
+            // JSON-backed services (replacement for DB for these tables)
+            StadiumJsonService stadiumJson = new StadiumJsonService();
+            TrainingSessionJsonService trainingJson = new TrainingSessionJsonService();
+            System.out.println("Stadiums (JSON): " + stadiumJson.getAll().size());
+            System.out.println("Team 1 sessions (JSON): " + trainingJson.getByTeam(1).size());
+    
             System.out.println("Done.");
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,0 +1,17 @@
+
+[
+  {
+    "stadiumId": 1,
+    "name": "Riverbank Arena",
+    "city": "Kyiv",
+    "capacity": 42000,
+    "builtYear": 2005
+  },
+  {
+    "stadiumId": 2,
+    "name": "Sunline Park",
+    "city": "Lviv",
+    "capacity": 27000,
+    "builtYear": 1998
+  }
+]
