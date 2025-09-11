@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.football.mybatis.mapper.ContractMapper">
+  <select id="findAll" resultType="com.football.model.Contract">
+    SELECT * FROM contracts
+  </select>
+
+  <insert id="insert" parameterType="com.football.model.Contract">
+    INSERT INTO contracts (player_id, team_id, start_date, end_date, salary)
+    VALUES (#{playerId}, #{teamId}, #{startDate}, #{endDate}, #{salary})
+  </insert>
+</mapper>

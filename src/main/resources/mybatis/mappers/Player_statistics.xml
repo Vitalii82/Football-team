@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.football.mybatis.mapper.PlayerStatisticsMapper">
+  <select id="findAll" resultType="com.football.model.PlayerStatistics">
+    SELECT * FROM player_statistics
+  </select>
+
+  <insert id="insert" parameterType="com.football.model.PlayerStatistics">
+    INSERT INTO player_statistics (match_id, player_id, minutes_played, goals, assists, yellow_cards, red_cards, rating)
+    VALUES (#{matchId}, #{playerId}, #{minutesPlayed}, #{goals}, #{assists}, #{yellowCards}, #{redCards}, #{rating})
+  </insert>
+</mapper>

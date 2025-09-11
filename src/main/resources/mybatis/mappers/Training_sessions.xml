@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.football.mybatis.mapper.TrainingSessionMapper">
+  <select id="findAll" resultType="com.football.model.TrainingSession">
+    SELECT * FROM training_sessions
+  </select>
+
+  <insert id="insert" parameterType="com.football.model.TrainingSession">
+    INSERT INTO training_sessions (team_id, date, focus, intensity)
+    VALUES (#{teamId}, #{date}, #{focus}, #{intensity})
+  </insert>
+</mapper>

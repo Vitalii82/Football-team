@@ -1,54 +1,33 @@
 package com.football.app;
 
-import com.football.service.*;
-import com.football.service.StadiumJsonService;
-import com.football.service.TrainingSessionJsonService;
-import java.time.LocalDate;
-import java.math.BigDecimal;
+// Switch these three imports between .jdbc and .mybatis to change implementation
+import com.football.service.impl.mybatis.TeamServiceImpl;
+import com.football.service.impl.mybatis.ManagerServiceImpl;
+import com.football.service.impl.mybatis.PositionServiceImpl;
+
+import com.football.model.Team;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        try {
-            // JAXB XML import (validated against XSD) as part of the flow
-            com.football.service.XmlJaxbService xml = new com.football.service.XmlJaxbService();
-            int mImported = xml.importManagers("src/main/resources/xml/managers.xml","src/main/resources/xml/managers.xsd");
-            int pImported = xml.importPositions("src/main/resources/xml/positions.xml","src/main/resources/xml/positions.xsd");
-            System.out.println("Imported via JAXB: managers="+mImported+", positions="+pImported);
+        TeamServiceImpl teams = new TeamServiceImpl();
+        ManagerServiceImpl managers = new ManagerServiceImpl();
+        PositionServiceImpl positions = new PositionServiceImpl();
 
-            // 1) Ensure base data
-            TeamService teamSvc = new TeamService();
-            int teamA = teamSvc.ensureTeam("Lions FC", 2010);
-            int teamB = teamSvc.ensureTeam("Eagles FC", 2012);
+        // list existing
+        List<Team> all = teams.list();
+        System.out.println("Teams in DB: " + all.size());
 
-            PlayerService playerSvc = new PlayerService();
-            int playerId = playerSvc.ensurePlayer("John", "Doe");
+        // create example
+        Team t = new Team();
+        t.setTeamName("MyBatis United");
+        t.setFoundedYear(2025);
+        t.setStadiumId(1);
+        t.setManagerId(1);
+        int rows = teams.create(t);
+        System.out.println("Inserted via MyBatis, affected: " + rows);
 
-            SeasonService seasonSvc = new SeasonService();
-            int currentYear = LocalDate.now().getYear();
-            int seasonId = seasonSvc.ensureSeason(2025, 2026);
-
-            // 2) Transfer flow: buy player into teamB
-            TransferService transferSvc = new TransferService();
-            transferSvc.buyPlayer(playerId, teamB, new BigDecimal("1000000"));
-
-            // 3) Match flow: schedule and play a match
-            MatchService matchSvc = new MatchService();
-            matchSvc.scheduleAndPlay(seasonId, teamA, teamB, LocalDate.now().plusDays(1));
-
-            // 4) Print teams list (proof)
-            System.out.println("Teams in DB:");
-            teamSvc.list().forEach(t -> System.out.println(" - " + t.getTeamName()));
-
-            
-            // JSON-backed services (replacement for DB for these tables)
-            StadiumJsonService stadiumJson = new StadiumJsonService();
-            TrainingSessionJsonService trainingJson = new TrainingSessionJsonService();
-            System.out.println("Stadiums (JSON): " + stadiumJson.getAll().size());
-            System.out.println("Team 1 sessions (JSON): " + trainingJson.getByTeam(1).size());
-    
-            System.out.println("Done.");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        // print again
+        System.out.println("Teams now: " + teams.list().size());
     }
 }

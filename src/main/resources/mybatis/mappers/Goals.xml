@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.football.mybatis.mapper.GoalMapper">
+  <select id="findAll" resultType="com.football.model.Goal">
+    SELECT * FROM goals
+  </select>
+
+  <insert id="insert" parameterType="com.football.model.Goal">
+    INSERT INTO goals (match_id, player_id, minute, is_own_goal, is_penalty)
+    VALUES (#{matchId}, #{playerId}, #{minute}, #{isOwnGoal}, #{isPenalty})
+  </insert>
+</mapper>

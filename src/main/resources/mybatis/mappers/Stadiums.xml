@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.football.mybatis.mapper.StadiumMapper">
+  <select id="findAll" resultType="com.football.model.Stadium">
+    SELECT * FROM stadiums
+  </select>
+
+  <insert id="insert" parameterType="com.football.model.Stadium">
+    INSERT INTO stadiums (name, city, capacity, built_year)
+    VALUES (#{name}, #{city}, #{capacity}, #{builtYear})
+  </insert>
+</mapper>

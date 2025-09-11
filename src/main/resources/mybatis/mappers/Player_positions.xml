@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.football.mybatis.mapper.PlayerPositionsMapper">
+  <select id="findAll" resultType="com.football.model.PlayerPositions">
+    SELECT * FROM player_positions
+  </select>
+
+  <insert id="insert" parameterType="com.football.model.PlayerPositions">
+    INSERT INTO player_positions ()
+    VALUES ()
+  </insert>
+</mapper>

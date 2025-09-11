@@ -1,58 +1,41 @@
-<?xml version='1.0' encoding='utf-8'?>
-<ns0:project xmlns:ns0="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <ns0:modelVersion>4.0.0</ns0:modelVersion>
-  <ns0:groupId>com.example</ns0:groupId>
-  <ns0:artifactId>football-sim-jdbc</ns0:artifactId>
-  <ns0:version>1.0.0</ns0:version>
-  <ns0:properties>
-    <ns0:maven.compiler.source>17</ns0:maven.compiler.source>
-    <ns0:maven.compiler.target>17</ns0:maven.compiler.target>
-  </ns0:properties>
-  <ns0:dependencies>
-    <ns0:dependency>
-      <ns0:groupId>com.mysql</ns0:groupId>
-      <ns0:artifactId>mysql-connector-j</ns0:artifactId>
-      <ns0:version>8.4.0</ns0:version>
-    </ns0:dependency>
-    <ns0:dependency>
-      <ns0:groupId>org.slf4j</ns0:groupId>
-      <ns0:artifactId>slf4j-simple</ns0:artifactId>
-      <ns0:version>2.0.13</ns0:version>
-      <ns0:scope>runtime</ns0:scope>
-    </ns0:dependency>
-
-    <ns0:dependency>
-      <ns0:groupId>jakarta.xml.bind</ns0:groupId>
-      <ns0:artifactId>jakarta.xml.bind-api</ns0:artifactId>
-      <ns0:version>4.0.0</ns0:version>
-    </ns0:dependency>
-    <ns0:dependency>
-      <ns0:groupId>org.glassfish.jaxb</ns0:groupId>
-      <ns0:artifactId>jaxb-runtime</ns0:artifactId>
-      <ns0:version>4.0.2</ns0:version>
-    </ns0:dependency>
-  
-    
-    <ns0:dependency>
-      <ns0:groupId>com.fasterxml.jackson.core</ns0:groupId>
-      <ns0:artifactId>jackson-databind</ns0:artifactId>
-      <ns0:version>2.17.1</ns0:version>
-    </ns0:dependency>
-    <ns0:dependency>
-      <ns0:groupId>com.fasterxml.jackson.core</ns0:groupId>
-      <ns0:artifactId>jackson-annotations</ns0:artifactId>
-      <ns0:version>2.17.1</ns0:version>
-    </ns0:dependency>
-    <ns0:dependency>
-      <ns0:groupId>com.fasterxml.jackson.core</ns0:groupId>
-      <ns0:artifactId>jackson-core</ns0:artifactId>
-      <ns0:version>2.17.1</ns0:version>
-    </ns0:dependency>
-    <ns0:dependency>
-      <ns0:groupId>com.fasterxml.jackson.datatype</ns0:groupId>
-      <ns0:artifactId>jackson-datatype-jsr310</ns0:artifactId>
-      <ns0:version>2.17.1</ns0:version>
-    </ns0:dependency>
-    </ns0:dependencies>
-
-</ns0:project>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.football</groupId>
+  <artifactId>DataBase_with_mybatis</artifactId>
+  <version>1.0.0</version>
+  <properties>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis</artifactId>
+      <version>3.5.15</version>
+    </dependency>
+    <dependency>
+      <groupId>com.mysql</groupId>
+      <artifactId>mysql-connector-j</artifactId>
+      <version>8.4.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>2.0.13</version>
+      <scope>runtime</scope>
+    </dependency>
+    <!-- JSON (from previous task, optional) -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.17.1</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.datatype</groupId>
+      <artifactId>jackson-datatype-jsr310</artifactId>
+      <version>2.17.1</version>
+    </dependency>
+  </dependencies>
+</project>
