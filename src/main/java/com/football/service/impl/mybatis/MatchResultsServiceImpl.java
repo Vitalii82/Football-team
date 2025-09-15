@@ -11,7 +11,7 @@ import java.util.List;
 public class MatchResultsServiceImpl implements MatchResultsService {
     @Override
     public int create(MatchResults e) {
-        try (SqlSession session = MyBatisUtil.getFactory().openSession(true)) {
+        try (SqlSession session = MyBatisUtil.getInstance().factory().openSession(true)) {
             MatchResultsMapper m = session.getMapper(MatchResultsMapper.class);
             return m.insert(e);
         }
@@ -19,7 +19,7 @@ public class MatchResultsServiceImpl implements MatchResultsService {
 
     @Override
     public List<MatchResults> list() {
-        try (SqlSession session = MyBatisUtil.getFactory().openSession(true)) {
+        try (SqlSession session = MyBatisUtil.getInstance().factory().openSession(true)) {
             MatchResultsMapper m = session.getMapper(MatchResultsMapper.class);
             return m.findAll();
         }

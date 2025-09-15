@@ -11,7 +11,7 @@ import java.util.List;
 public class TransferServiceImpl implements TransferService {
     @Override
     public int create(Transfer e) {
-        try (SqlSession session = MyBatisUtil.getFactory().openSession(true)) {
+        try (SqlSession session = MyBatisUtil.getInstance().factory().openSession(true)) {
             TransferMapper m = session.getMapper(TransferMapper.class);
             return m.insert(e);
         }
@@ -19,7 +19,7 @@ public class TransferServiceImpl implements TransferService {
 
     @Override
     public List<Transfer> list() {
-        try (SqlSession session = MyBatisUtil.getFactory().openSession(true)) {
+        try (SqlSession session = MyBatisUtil.getInstance().factory().openSession(true)) {
             TransferMapper m = session.getMapper(TransferMapper.class);
             return m.findAll();
         }

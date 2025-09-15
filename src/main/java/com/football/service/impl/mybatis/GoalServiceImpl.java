@@ -11,7 +11,7 @@ import java.util.List;
 public class GoalServiceImpl implements GoalService {
     @Override
     public int create(Goal e) {
-        try (SqlSession session = MyBatisUtil.getFactory().openSession(true)) {
+        try (SqlSession session = MyBatisUtil.getInstance().factory().openSession(true)) {
             GoalMapper m = session.getMapper(GoalMapper.class);
             return m.insert(e);
         }
@@ -19,7 +19,7 @@ public class GoalServiceImpl implements GoalService {
 
     @Override
     public List<Goal> list() {
-        try (SqlSession session = MyBatisUtil.getFactory().openSession(true)) {
+        try (SqlSession session = MyBatisUtil.getInstance().factory().openSession(true)) {
             GoalMapper m = session.getMapper(GoalMapper.class);
             return m.findAll();
         }

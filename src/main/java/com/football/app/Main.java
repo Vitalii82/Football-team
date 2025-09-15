@@ -1,33 +1,23 @@
 package com.football.app;
 
-// Switch these three imports between .jdbc and .mybatis to change implementation
-import com.football.service.impl.mybatis.TeamServiceImpl;
-import com.football.service.impl.mybatis.ManagerServiceImpl;
-import com.football.service.impl.mybatis.PositionServiceImpl;
+import com.football.facade.FootballFacade;
+import com.football.navigator.AppNavigator;
+import com.football.navigator.Command;
+import com.football.navigator.Navigator;
 
-import com.football.model.Team;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        TeamServiceImpl teams = new TeamServiceImpl();
-        ManagerServiceImpl managers = new ManagerServiceImpl();
-        PositionServiceImpl positions = new PositionServiceImpl();
+        FootballFacade facade = new FootballFacade();
+        Navigator nav = new AppNavigator(facade);
 
-        // list existing
-        List<Team> all = teams.list();
-        System.out.println("Teams in DB: " + all.size());
+        nav.go(Command.BOOTSTRAP);
+        nav.go(Command.SETUP_SEASON_AND_MATCH);
+        nav.go(Command.RECORD_RESULT);
+        nav.go(Command.TRAINING);
+        nav.go(Command.SNAPSHOT);
 
-        // create example
-        Team t = new Team();
-        t.setTeamName("MyBatis United");
-        t.setFoundedYear(2025);
-        t.setStadiumId(1);
-        t.setManagerId(1);
-        int rows = teams.create(t);
-        System.out.println("Inserted via MyBatis, affected: " + rows);
-
-        // print again
-        System.out.println("Teams now: " + teams.list().size());
+        System.out.println("Implementation chosen via 'service.impl' in db.properties (jdbc | mybatis).");
+        nav.go(Command.EXIT);
     }
 }

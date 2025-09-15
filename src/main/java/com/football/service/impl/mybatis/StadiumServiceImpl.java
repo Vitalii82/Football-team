@@ -11,7 +11,7 @@ import java.util.List;
 public class StadiumServiceImpl implements StadiumService {
     @Override
     public int create(Stadium e) {
-        try (SqlSession session = MyBatisUtil.getFactory().openSession(true)) {
+        try (SqlSession session = MyBatisUtil.getInstance().factory().openSession(true)) {
             StadiumMapper m = session.getMapper(StadiumMapper.class);
             return m.insert(e);
         }
@@ -19,7 +19,7 @@ public class StadiumServiceImpl implements StadiumService {
 
     @Override
     public List<Stadium> list() {
-        try (SqlSession session = MyBatisUtil.getFactory().openSession(true)) {
+        try (SqlSession session = MyBatisUtil.getInstance().factory().openSession(true)) {
             StadiumMapper m = session.getMapper(StadiumMapper.class);
             return m.findAll();
         }

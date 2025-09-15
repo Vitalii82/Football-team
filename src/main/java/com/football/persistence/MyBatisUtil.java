@@ -7,19 +7,17 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import java.io.Reader;
 
 public final class MyBatisUtil {
-    private static final SqlSessionFactory SQL_SESSION_FACTORY;
+    private static final MyBatisUtil INSTANCE = new MyBatisUtil();
+    private final SqlSessionFactory factory;
 
-    static {
+    private MyBatisUtil() {
         try (Reader reader = Resources.getResourceAsReader("mybatis/mybatis-config.xml")) {
-            SQL_SESSION_FACTORY = new SqlSessionFactoryBuilder().build(reader);
+            factory = new SqlSessionFactoryBuilder().build(reader);
         } catch (Exception e) {
-            throw new RuntimeException("Failed to init MyBatis SqlSessionFactory", e);
+            throw new RuntimeException("Failed to init MyBatis factory", e);
         }
     }
 
-    private MyBatisUtil() {}
-
-    public static SqlSessionFactory getFactory() {
-        return SQL_SESSION_FACTORY;
-    }
+    public static MyBatisUtil getInstance() { return INSTANCE; }
+    public SqlSessionFactory factory() { return factory; }
 }

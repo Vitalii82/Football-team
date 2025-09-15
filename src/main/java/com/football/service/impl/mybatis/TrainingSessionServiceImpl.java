@@ -11,7 +11,7 @@ import java.util.List;
 public class TrainingSessionServiceImpl implements TrainingSessionService {
     @Override
     public int create(TrainingSession e) {
-        try (SqlSession session = MyBatisUtil.getFactory().openSession(true)) {
+        try (SqlSession session = MyBatisUtil.getInstance().factory().openSession(true)) {
             TrainingSessionMapper m = session.getMapper(TrainingSessionMapper.class);
             return m.insert(e);
         }
@@ -19,7 +19,7 @@ public class TrainingSessionServiceImpl implements TrainingSessionService {
 
     @Override
     public List<TrainingSession> list() {
-        try (SqlSession session = MyBatisUtil.getFactory().openSession(true)) {
+        try (SqlSession session = MyBatisUtil.getInstance().factory().openSession(true)) {
             TrainingSessionMapper m = session.getMapper(TrainingSessionMapper.class);
             return m.findAll();
         }

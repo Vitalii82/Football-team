@@ -11,7 +11,7 @@ import java.util.List;
 public class PlayerStatisticsServiceImpl implements PlayerStatisticsService {
     @Override
     public int create(PlayerStatistics e) {
-        try (SqlSession session = MyBatisUtil.getFactory().openSession(true)) {
+        try (SqlSession session = MyBatisUtil.getInstance().factory().openSession(true)) {
             PlayerStatisticsMapper m = session.getMapper(PlayerStatisticsMapper.class);
             return m.insert(e);
         }
@@ -19,7 +19,7 @@ public class PlayerStatisticsServiceImpl implements PlayerStatisticsService {
 
     @Override
     public List<PlayerStatistics> list() {
-        try (SqlSession session = MyBatisUtil.getFactory().openSession(true)) {
+        try (SqlSession session = MyBatisUtil.getInstance().factory().openSession(true)) {
             PlayerStatisticsMapper m = session.getMapper(PlayerStatisticsMapper.class);
             return m.findAll();
         }

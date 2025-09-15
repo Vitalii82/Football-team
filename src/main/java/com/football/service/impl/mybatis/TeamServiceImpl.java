@@ -11,7 +11,7 @@ import java.util.List;
 public class TeamServiceImpl implements TeamService {
     @Override
     public int create(Team e) {
-        try (SqlSession session = MyBatisUtil.getFactory().openSession(true)) {
+        try (SqlSession session = MyBatisUtil.getInstance().factory().openSession(true)) {
             TeamMapper m = session.getMapper(TeamMapper.class);
             return m.insert(e);
         }
@@ -19,7 +19,7 @@ public class TeamServiceImpl implements TeamService {
 
     @Override
     public List<Team> list() {
-        try (SqlSession session = MyBatisUtil.getFactory().openSession(true)) {
+        try (SqlSession session = MyBatisUtil.getInstance().factory().openSession(true)) {
             TeamMapper m = session.getMapper(TeamMapper.class);
             return m.findAll();
         }
